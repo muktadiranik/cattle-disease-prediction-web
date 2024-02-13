@@ -30,6 +30,11 @@ function App() {
     setImages(updatedImages);
   };
 
+  const isValidPhoneNumber = (phoneNumber) => {
+    const regex = /^\d{11}$/;
+    return regex.test(phoneNumber);
+  };
+
   const handleSubmit = () => {
     const formData = new FormData();
 
@@ -46,6 +51,11 @@ function App() {
 
     if (!phone || !description || !doctorsAdvice || !diagonosis || !treatment || !selectedDisease) {
       toast.error("Please fill in all required fields");
+      return;
+    }
+
+    if (!isValidPhoneNumber(phone)) {
+      toast.error("Invalid phone number");
       return;
     }
 
@@ -92,7 +102,7 @@ function App() {
     <div className="App">
       <ToastContainer />
       <div className="container mt-3">
-        <div className="mb-5">
+        <div className="mb-5 text-center">
           <h1>Cattle Disease Prediction</h1>
         </div>
         <div>
