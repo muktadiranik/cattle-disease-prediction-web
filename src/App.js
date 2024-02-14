@@ -142,7 +142,7 @@ function App() {
             <h5 className="form-label">Images</h5>
             <div className="container d-flex justify-content-center align-items-center">
               <div className="text-center m-3">
-                <Dropzone onDrop={handleDrop} accept="image/*">
+                <Dropzone onDrop={handleDrop}>
                   {({ getRootProps, getInputProps }) => (
                     <section>
                       <div {...getRootProps()} style={dropzoneStyles}>
