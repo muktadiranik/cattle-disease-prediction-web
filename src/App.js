@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from "react";
 import Dropzone from "react-dropzone";
-import "react-image-gallery/styles/css/image-gallery.css";
 import axios from "axios";
 import { ToastContainer, toast } from "react-toastify";
+import "react-image-gallery/styles/css/image-gallery.css";
 import "react-toastify/dist/ReactToastify.css";
 
 function App() {
@@ -31,7 +31,7 @@ function App() {
   };
 
   const isValidPhoneNumber = (phoneNumber) => {
-    const regex = /^\d{11}$/;
+    const regex = /^01\d{9}$/;
     return regex.test(phoneNumber);
   };
 
