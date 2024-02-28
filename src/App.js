@@ -49,7 +49,7 @@ function App() {
       formData.append("images", image.file);
     });
 
-    if (!phone || !description || !doctorsAdvice || !diagonosis || !treatment || !selectedDisease) {
+    if (!phone || !description || !doctorsAdvice || !diagonosis || !treatment || !selectedDisease || images.length === 0) {
       toast.error("Please fill in all required fields");
       return;
     }
@@ -96,6 +96,14 @@ function App() {
     height: "150px",
     objectFit: "cover",
     marginRight: "10px",
+  };
+
+  const dropzoneStyles = {
+    border: "2px dashed #cccccc",
+    borderRadius: "4px",
+    padding: "20px",
+    textAlign: "center",
+    cursor: "pointer",
   };
 
   return (
@@ -153,26 +161,26 @@ function App() {
                   )}
                 </Dropzone>
                 <div className="mt-3"></div>
-                {images.length > 0 && (
-                  <div className="mt-3">
-                    <h5>Selected Images:</h5>
-                    <div className="row justify-content-center">
-                      {images.map((image, index) => (
-                        <div className="col-md-3" key={index}>
-                          <div className="m-3">
-                            <img src={image.original} alt={`Preview ${index + 1}`} style={thumbnailStyles} className="img-fluid" />
-                            <button className="btn btn-danger mt-2" onClick={() => handleRemove(index)}>
-                              <i className="fa-solid fa-trash"></i>
-                            </button>
-                          </div>
-                        </div>
-                      ))}
-                    </div>
-                  </div>
-                )}
               </div>
             </div>
           </div>
+          {images.length > 0 && (
+            <div className="mt-3">
+              <h5>Selected Images:</h5>
+              <div className="row justify-content-center">
+                {images.map((image, index) => (
+                  <div className="col-md-3" key={index}>
+                    <div className="m-3">
+                      <img src={image.original} alt={`Preview ${index + 1}`} style={thumbnailStyles} className="img-fluid" />
+                      <button className="btn btn-danger mt-2" onClick={() => handleRemove(index)}>
+                        <i className="fa-solid fa-trash"></i>
+                      </button>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+          )}
           <div className="text-center mb-3">
             <button type="button" className="btn btn-primary btn-lg" onClick={handleSubmit}>
               Submit
@@ -183,13 +191,5 @@ function App() {
     </div>
   );
 }
-
-const dropzoneStyles = {
-  border: "2px dashed #cccccc",
-  borderRadius: "4px",
-  padding: "20px",
-  textAlign: "center",
-  cursor: "pointer",
-};
 
 export default App;
